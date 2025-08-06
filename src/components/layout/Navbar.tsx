@@ -1,0 +1,132 @@
+// src/components/layout/Navbar.tsx
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import ServicesDropdown from "./ServicesDropdown";
+import logo from "../../assets/images/logo_white.svg";
+
+const navItems = [
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services", hasDropdown: true },
+  { label: "Contact", to: "/contact" },
+];
+
+export default function Navbar() {
+  const [servicesOpen, setServicesOpen] = useState(false);
+
+  return (
+    <nav className="navbar">
+      <Link to="/" className="logo-link" aria-label="Go to homepage">
+        <img src={logo} alt="MyCompany Logo" className="logo-image" />
+      </Link>
+
+      <ul className="nav-list">
+        {navItems.map(({ label, to, hasDropdown }) => {
+          if (hasDropdown) {
+            return (
+              <li
+                key={label}
+                className="nav-item dropdown"
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
+              >
+                <div
+                  className="nav-link"
+                  tabIndex={0}
+                  onFocus={() => setServicesOpen(true)}
+                  onBlur={() => setServicesOpen(false)}
+                >
+                  {label}
+                  <span className="underline" />
+                </div>
+
+                <ServicesDropdown isOpen={servicesOpen} />
+              </li>
+            );
+          }
+
+          return (
+            <li key={label} className="nav-item">
+              <Link to={to} className="nav-link">
+                {label}
+                <span className="underline" />
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+
+      <style jsx>{`
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem 6%;
+          background-color: #222;
+          color: #fff;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-link {
+          display: flex;
+          align-items: center;
+          user-select: none;
+          outline: none;
+        }
+
+        .logo-image {
+          height: 40px; /* adjust to fit your navbar */
+          width: auto;
+          object-fit: contain;
+        }
+
+        .nav-list {
+          display: flex;
+          gap: 2rem;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .nav-item {
+          position: relative;
+        }
+
+        .nav-link {
+          color: #eee;
+          text-decoration: none;
+          cursor: pointer;
+          padding: 0.5rem 0;
+          display: inline-block;
+          transition: color 0.3s ease, transform 0.3s ease;
+          user-select: none;
+          outline: none;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+          color: #ff4081;
+          transform: scale(1.1);
+        }
+
+        .underline {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          height: 2px;
+          width: 0%;
+          background-color: #ff4081;
+          transition: width 0.3s ease;
+          border-radius: 2px;
+        }
+
+        .nav-link:hover .underline,
+        .nav-link:focus .underline {
+          width: 100%;
+        }
+      `}</style>
+    </nav>
+  );
+}
