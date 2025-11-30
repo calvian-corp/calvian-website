@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaCode, FaMobileAlt, FaPalette } from "react-icons/fa"; // Using react-icons for demo
+import colors from "../../../config/colors";
 
 interface ServicesDropdownProps {
   isOpen: boolean;
@@ -11,19 +12,19 @@ const services = [
   {
     label: "Web Development",
     to: "/services/web-development",
-    icon: <FaCode size={24} color="#ff4081" />,
+    icon: <FaCode size={24} color={colors.primary} />,
     description: "Build modern and scalable websites and apps.",
   },
   {
     label: "Mobile Apps",
     to: "/services/mobile-apps",
-    icon: <FaMobileAlt size={24} color="#ff4081" />,
+    icon: <FaMobileAlt size={24} color={colors.primary} />,
     description: "Native and cross-platform mobile applications.",
   },
   {
     label: "UI/UX Design",
     to: "/services/ui-ux",
-    icon: <FaPalette size={24} color="#ff4081" />,
+    icon: <FaPalette size={24} color={colors.primary} />,
     description: "Intuitive and beautiful user interfaces.",
   },
 ];
@@ -66,7 +67,7 @@ export default function ServicesDropdown({ isOpen }: ServicesDropdownProps) {
           visibility: hidden;
           transition: max-height 0.4s ease, opacity 0.3s ease, visibility 0.3s;
           z-index: 1001;
-          border-top: 2px solid #ff4081;
+          border-top: 2px solid ${colors.primary};
         }
 
         .dropdown-drawer.open {
@@ -101,7 +102,7 @@ export default function ServicesDropdown({ isOpen }: ServicesDropdownProps) {
         }
 
         .drawer-item:hover {
-          background-color: #ff4081;
+          background-color: ${colors.primary};
           color: #222;
         }
 
@@ -131,21 +132,21 @@ export default function ServicesDropdown({ isOpen }: ServicesDropdownProps) {
         .contact-btn {
           align-self: center;
           margin-left: 2rem;
-          background-color: #ff4081;
+          background-color: ${colors["gray-base"]};
           border: none;
           padding: 0.75rem 1.75rem;
           border-radius: 6px;
           color: #222;
           font-weight: 700;
           cursor: pointer;
-          box-shadow: 0 4px 12px rgba(255, 64, 129, 0.6);
+          box-shadow: 0 4px 12px ${colors["gray-base"]};
           transition: background-color 0.3s ease;
           user-select: none;
           height: fit-content;
         }
 
         .contact-btn:hover {
-          background-color: #e63672;
+          background-color: ${colors.primary};
         }
 
         /* Scrollbar styling for overflow */
@@ -154,7 +155,7 @@ export default function ServicesDropdown({ isOpen }: ServicesDropdownProps) {
         }
 
         .dropdown-drawer.open::-webkit-scrollbar-thumb {
-          background-color: #ff4081aa;
+          background-color: ${colors["hover-accent"]};
           border-radius: 4px;
         }
       `}</style>

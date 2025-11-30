@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ServicesDropdown from "./ServicesDropdown";
 import logo from "../../assets/images/logo_white.svg";
+import colors from "../../../config/colors";
 
 const navItems = [
   { label: "About", to: "/about" },
@@ -109,7 +110,7 @@ export default function Navbar() {
 
         .nav-link:hover,
         .nav-link:focus {
-          color: #ff4081;
+          color: ${colors.primary};
           transform: scale(1.1);
         }
 
@@ -119,7 +120,7 @@ export default function Navbar() {
           bottom: 0;
           height: 2px;
           width: 0%;
-          background-color: #ff4081;
+          background-color: ${colors.primary};
           transition: width 0.3s ease;
           border-radius: 2px;
         }
