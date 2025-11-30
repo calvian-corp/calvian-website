@@ -10,16 +10,18 @@ const navItems = [
   { label: "Contact", to: "/contact" },
 ];
 
+const sideMargins = "120px";
+
 export default function Navbar() {
   const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
     <nav className="navbar">
-      <Link to="/" className="logo-link" aria-label="Go to homepage">
+      <Link to="/" className="logo-link" aria-label="Go to homepage" style={{paddingLeft: sideMargins}}>
         <img src={logo} alt="MyCompany Logo" className="logo-image" />
       </Link>
 
-      <ul className="nav-list">
+      <ul className="nav-list" style={{marginRight: sideMargins}}>
         {navItems.map(({ label, to, hasDropdown }) => {
           if (hasDropdown) {
             return (
