@@ -110,7 +110,7 @@ export default function Navbar() {
 
         .nav-link:hover,
         .nav-link:focus {
-          color: ${colors.primary};
+          color: ${colors["primary-hover"]};
           transform: scale(1.1);
         }
 

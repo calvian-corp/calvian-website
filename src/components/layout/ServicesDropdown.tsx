@@ -102,8 +102,13 @@ export default function ServicesDropdown({ isOpen }: ServicesDropdownProps) {
         }
 
         .drawer-item:hover {
-          background-color: ${colors.primary};
+          background-color: ${colors["primary-hover"]};
           color: #222;
+        }
+
+        .drawer-item:hover .icon svg {
+          color: #222;
+          fill: #222;
         }
 
         .icon {
