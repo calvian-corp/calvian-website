@@ -132,21 +132,21 @@ export default function ServicesDropdown({ isOpen }: ServicesDropdownProps) {
         .contact-btn {
           align-self: center;
           margin-left: 2rem;
-          background-color: ${colors["gray-base"]};
+          background-color: ${colors["primary"]};
           border: none;
           padding: 0.75rem 1.75rem;
           border-radius: 6px;
           color: #222;
           font-weight: 700;
           cursor: pointer;
-          box-shadow: 0 4px 12px ${colors["gray-base"]};
+          //box-shadow: 0 4px 12px ${colors["gray-base"]};
           transition: background-color 0.3s ease;
           user-select: none;
           height: fit-content;
         }
 
         .contact-btn:hover {
-          background-color: ${colors.primary};
+          background-color: ${colors["primary-hover"]};
         }
 
         /* Scrollbar styling for overflow */

@@ -82,7 +82,7 @@ const Contact: React.FC = () => {
             type="submit"
             disabled={isSubmitting}
             className={`w-full py-3 rounded-lg text-white font-semibold ${
-              isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary hover:bg-blue-700'
+              isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary hover:bg-primary-hover'
             } transition-colors`}
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}
