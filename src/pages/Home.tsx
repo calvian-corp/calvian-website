@@ -7,6 +7,8 @@ const Home: React.FC = () => {
     <div className="pt-24 max-w-7xl mx-auto px-4 space-y-20">
       <HeroSection />
 
+      <div style={{padding: "20px 0"}} />
+
       <ServicesSection />
 
       {/* About Snippet */}

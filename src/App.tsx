@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import { Helmet } from 'react-helmet';
@@ -13,15 +13,21 @@ const Blog = lazy(() => import('./pages/Blog'));
 const Post = lazy(() => import('./pages/Post'));
 
 function App() {
+  const location = useLocation();
+
   return (
     <>
       <Helmet>
         <title>MyCompany - Software Services</title>
         <meta name="description" content="Professional software services for modern businesses." />
       </Helmet>
+
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-grow container mx-auto px-4 py-8">
+
+        {location.pathname === '/' && <div className="absolute inset-0 bg-gray-100 design-chevron z-0 transform scale-x-[1.2]" />}
+
+        <main className="flex-grow relative z-10 container mx-auto px-4 py-8">
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -33,6 +39,9 @@ function App() {
             </Routes>
           </Suspense>
         </main>
+
+        <div className="relative pt-8 pb-0 overflow-hidden -mt-0" />
+
         <Footer />
       </div>
     </>
