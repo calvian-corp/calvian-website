@@ -32,7 +32,7 @@ export default function Navbar() {
                 onMouseLeave={() => setServicesOpen(false)}
               >
                 <div
-                  className="nav-link"
+                  className="nav-link no-focus"
                   tabIndex={0}
                   onFocus={() => setServicesOpen(true)}
                   onBlur={() => setServicesOpen(false)}
@@ -41,7 +41,7 @@ export default function Navbar() {
                   <span className="underline" />
                 </div>
 
-                <ServicesDropdown isOpen={servicesOpen} />
+                <ServicesDropdown isOpen={servicesOpen} setIsOpen={setServicesOpen} />
               </li>
             );
           }
@@ -119,7 +119,7 @@ export default function Navbar() {
         }
 
         .nav-link:hover,
-        .nav-link:focus {
+        .nav-link:not(.no-focus):focus {
           color: ${colors["primary-hover"]};
           transform: scale(1.1);
         }
@@ -136,7 +136,7 @@ export default function Navbar() {
         }
 
         .nav-link:hover .underline,
-        .nav-link:focus .underline {
+        .nav-link:not(.no-focus):focus .underline {
           width: 100%;
         }
 

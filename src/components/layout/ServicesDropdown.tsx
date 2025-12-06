@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import { FaCloud, FaShieldAlt, FaRocket, FaExchangeAlt, FaCogs, FaCheckSquare } from "react-icons/fa";
 import { AiOutlineApi } from "react-icons/ai";
@@ -8,6 +8,7 @@ import colors from "../../../config/colors";
 
 interface ServicesDropdownProps {
   isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
 const services = [
@@ -49,12 +50,12 @@ const services = [
   },
 ];
 
-export default function ServicesDropdown({ isOpen }: ServicesDropdownProps) {
+export default function ServicesDropdown({ isOpen, setIsOpen }: ServicesDropdownProps) {
   return (
     <div className={`dropdown-drawer ${isOpen ? "open" : ""}`}>
       <div className="drawer-content">
         {services.map(({ label, to, icon, description }) => (
-          <Link key={to} to={to} className="drawer-item">
+          <Link key={to} to={to} className="drawer-item" onClick={() => setIsOpen(false)}>
             <div className="icon">{icon}</div>
             <div className="text">
               <div className="title">{label}</div>
