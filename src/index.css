@@ -22,3 +22,11 @@ body::-webkit-scrollbar {
     height: 550px;
     width: 100%;
 }
+
+.is-fixed-for-parallax {
+    position: fixed !important;
+    /* Ensure it covers the right area */
+    top: 0;
+    left: 0;
+    right: 0;
+}

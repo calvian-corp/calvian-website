@@ -21,19 +21,25 @@ function App() {
   const prevScrollY = useRef(0);
   const [isVisible, setIsVisible] = useState(true);
 
+  const PARALLAX_FACTOR = 0.3; // You can change this to 0.75, 0.25, etc.
+
   useEffect(() => {
     const navbarElement = document.getElementById('main-navbar');
+    // Get the new element you just added
+    const chevronElement = document.getElementById('design-chevron'); 
+
     if (!navbarElement) return;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      setIsVisible(currentScrollY < 250)
+      // ... (Your existing visibility and opacity logic)
 
+      setIsVisible(currentScrollY < 250);
       prevScrollY.current = currentScrollY;
 
       const scrollFactor = Math.min(1, currentScrollY / SCROLL_THRESHOLD);
-      const opacity = 1.0 - scrollFactor; 
+      const opacity = 1.0 - scrollFactor;
 
       if (currentScrollY > 50) {
         setIsScrolled(true);
@@ -44,15 +50,21 @@ function App() {
       navbarElement.style.backgroundColor = `rgba(34, 34, 34, ${opacity})`;
       const shadowOpacity = 0.2 * opacity;
       navbarElement.style.boxShadow = `0 2px 8px rgba(0, 0, 0, ${shadowOpacity})`;
+
+      // 👇 NEW PARALLAX LOGIC: Apply the controlled scroll to the chevron
+      if (chevronElement) {
+          const transformY = currentScrollY * -PARALLAX_FACTOR;
+          chevronElement.style.transform = `translateY(${transformY}px)`;
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); 
-    
+    handleScroll(); 
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [location.pathname]);
 
   return (
     <>
@@ -67,7 +79,13 @@ function App() {
           className={`${isScrolled ? 'scrolled' : ''} ${isVisible ? 'visible' : 'hidden'}`}
         /> 
 
-        {location.pathname === '/' && <div className="absolute inset-0 bg-gray-100 design-chevron z-0" />}
+        {location.pathname === '/' && (
+          <div 
+            id="design-chevron"
+            className="bg-gray-100 design-chevron z-0" 
+            style={{ position: 'fixed', top: 0, left: 0, width: '100%' }} 
+          />
+        )}
 
         <main className="flex-grow pt-24 relative z-10 container mx-auto px-4 py-8">
           <Suspense fallback={<LoadingSpinner />}>
