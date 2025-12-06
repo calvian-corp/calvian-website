@@ -8,7 +8,6 @@ import colors from "../../../config/colors";
 const navItems = [
   { label: "About", to: "/about" },
   { label: "Services", to: "/services", hasDropdown: true },
-  { label: "Contact", to: "/contact" },
 ];
 
 const sideMargins = "120px";
@@ -56,6 +55,16 @@ export default function Navbar() {
             </li>
           );
         })}
+
+        <li className="nav-item">
+          <Link to="/contact" style={{ textDecoration: 'none' }}>
+            <button
+              className="contact-btn"
+              type="button">
+                Contact
+            </button>
+          </Link>
+        </li>
       </ul>
 
       <style jsx>{`
@@ -91,6 +100,7 @@ export default function Navbar() {
           list-style: none;
           margin: 0;
           padding: 0;
+          align-items: center;
         }
 
         .nav-item {
@@ -128,6 +138,21 @@ export default function Navbar() {
         .nav-link:hover .underline,
         .nav-link:focus .underline {
           width: 100%;
+        }
+
+        .contact-btn {
+          background-color: ${colors.primary};
+          color: #222;
+          border: none;
+          border-radius: 4px;
+          padding: 0.5rem 1rem;
+          cursor: pointer;
+          font-weight: bold;
+          transition: background-color 0.3s ease;
+        }
+
+        .contact-btn:hover {
+          background-color: ${colors["primary-hover"]};
         }
       `}</style>
     </nav>
