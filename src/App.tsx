@@ -57,7 +57,7 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>MyCompany - Software Services</title>
+        <title>Calvian - Software Services</title>
         <meta name="description" content="Professional software services for modern businesses." />
       </Helmet>
 
@@ -69,7 +69,7 @@ function App() {
 
         {location.pathname === '/' && <div className="absolute inset-0 bg-gray-100 design-chevron z-0" />}
 
-        <main className="flex-grow relative z-10 container mx-auto px-4 py-8">
+        <main className="flex-grow pt-24 relative z-10 container mx-auto px-4 py-8">
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -81,6 +81,12 @@ function App() {
             </Routes>
           </Suspense>
         </main>
+
+        {location.pathname === '/' &&
+          <div className="flex justify-center w-full">
+            <div className="bg-primary w-full" style={{height: "550px", margin: "-500px 0 -40px 0", bottom: 0}} />
+          </div>
+        }
 
         <div className="relative pt-8 pb-0 overflow-hidden -mt-0" />
 

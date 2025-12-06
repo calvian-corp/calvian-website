@@ -25,7 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({ id, className }) => {
     // Apply the ID and class from App.tsx, and combine with the static base class
     <nav id={id} className={`navbar navbar-base ${className}`}> 
       <Link to="/" className="logo-link" aria-label="Go to homepage" style={{ paddingLeft: sideMargins }}>
-        <img src={logo} alt="MyCompany Logo" className="logo-image" />
+        <img src={logo} alt="Calvian Logo" className="logo-image" />
       </Link>
 
       <ul className="nav-list" style={{ marginRight: sideMargins }}>

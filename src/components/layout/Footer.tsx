@@ -92,7 +92,7 @@ export default function Footer() {
             <div className="footer-logo">
               {/* Replace with your logo component */}
               <Link to="/" className="footer-logo-link" aria-label="Go to homepage">
-                <img src={logo} alt="MyCompany Logo" className="footer-logo-image" />
+                <img src={logo} alt="Calvian Logo" className="footer-logo-image" />
               </Link>
               <p>We provide innovative custom software solutions.</p>
             </div>
@@ -125,7 +125,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-bottom">
-            © {new Date().getFullYear()} YourCompany. All rights reserved.
+            © {new Date().getFullYear()} Calvian Inc. All rights reserved.
           </div>
         </div>
       </footer>
