@@ -6,6 +6,10 @@ body {
   @apply bg-white text-gray-900 font-sans;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .design-chevron {
     clip-path: polygon(
         0% 0%,       /* Top Left */
