@@ -5,6 +5,11 @@ import ServicesDropdown from "./ServicesDropdown";
 import logo from "../../assets/images/logo_white.svg";
 import colors from "../../../config/colors";
 
+interface NavbarProps {
+    id: string;
+    className: string;
+}
+
 const navItems = [
   { label: "About", to: "/about" },
   { label: "Services", to: "/services", hasDropdown: true },
@@ -12,16 +17,18 @@ const navItems = [
 
 const sideMargins = "120px";
 
-export default function Navbar() {
+// Updated the function signature to use React.FC and accept props
+const Navbar: React.FC<NavbarProps> = ({ id, className }) => {
   const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
-    <nav className="navbar">
-      <Link to="/" className="logo-link" aria-label="Go to homepage" style={{paddingLeft: sideMargins}}>
+    // Apply the ID and class from App.tsx, and combine with the static base class
+    <nav id={id} className={`navbar navbar-base ${className}`}> 
+      <Link to="/" className="logo-link" aria-label="Go to homepage" style={{ paddingLeft: sideMargins }}>
         <img src={logo} alt="MyCompany Logo" className="logo-image" />
       </Link>
 
-      <ul className="nav-list" style={{marginRight: sideMargins}}>
+      <ul className="nav-list" style={{ marginRight: sideMargins }}>
         {navItems.map(({ label, to, hasDropdown }) => {
           if (hasDropdown) {
             return (
@@ -61,7 +68,7 @@ export default function Navbar() {
             <button
               className="contact-btn"
               type="button">
-                Contact
+              Contact
             </button>
           </Link>
         </li>
@@ -72,13 +79,6 @@ export default function Navbar() {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 1rem 6%;
-          background-color: #222;
-          color: #fff;
-          position: sticky;
-          top: 0;
-          z-index: 1000;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .logo-link {
@@ -158,3 +158,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+export default Navbar;

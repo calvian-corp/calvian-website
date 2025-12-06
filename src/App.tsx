@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState, useEffect, useRef } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -12,8 +12,47 @@ const Contact = lazy(() => import('./pages/Contact'));
 const Blog = lazy(() => import('./pages/Blog'));
 const Post = lazy(() => import('./pages/Post'));
 
+const SCROLL_THRESHOLD = 200; // Distance in pixels to reach full transparency
+
 function App() {
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const prevScrollY = useRef(0);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const navbarElement = document.getElementById('main-navbar');
+    if (!navbarElement) return;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      setIsVisible(currentScrollY < 250)
+
+      prevScrollY.current = currentScrollY;
+
+      const scrollFactor = Math.min(1, currentScrollY / SCROLL_THRESHOLD);
+      const opacity = 1.0 - scrollFactor; 
+
+      if (currentScrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      navbarElement.style.backgroundColor = `rgba(34, 34, 34, ${opacity})`;
+      const shadowOpacity = 0.2 * opacity;
+      navbarElement.style.boxShadow = `0 2px 8px rgba(0, 0, 0, ${shadowOpacity})`;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); 
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -23,7 +62,10 @@ function App() {
       </Helmet>
 
       <div className="flex flex-col min-h-screen">
-        <Navbar />
+        <Navbar
+          id="main-navbar"
+          className={`${isScrolled ? 'scrolled' : ''} ${isVisible ? 'visible' : 'hidden'}`}
+        /> 
 
         {location.pathname === '/' && <div className="absolute inset-0 bg-gray-100 design-chevron z-0" />}
 
@@ -44,6 +86,28 @@ function App() {
 
         <Footer />
       </div>
+
+      <style jsx global>{`
+        .navbar-base {
+          padding: 1rem 6%;
+          color: #fff;
+          position: fixed; /* CRITICAL: Changed from 'sticky' to 'fixed' for dynamic sliding */
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1000;
+          /* Add transform to the transition property */
+          transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar-base.hidden {
+            transform: translateY(-100%); /* Slide it completely up */
+        }
+
+        .navbar-base.visible {
+            transform: translateY(0); /* Ensure it's in the standard position */
+        }
+      `}</style>
     </>
   );
 }
