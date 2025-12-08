@@ -1,7 +1,39 @@
 import React from 'react';
-import { FaLinkedin, FaTwitter, FaFacebook, FaYoutube } from 'react-icons/fa';
+import { FaLinkedin, FaTwitter, FaFacebook, FaYoutube, FaCloud, FaExchangeAlt, FaCogs, FaCheckSquare } from 'react-icons/fa';
+import { AiOutlineApi } from 'react-icons/ai';
+import { MdOutlineDataExploration } from 'react-icons/md';
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo_white.svg";
+import Contact from '../../pages/Contact';
+import MiniContactForm from '../layout/MiniContactForm'
+
+// Replicating the services array from ServicesDropdown for use in the Footer
+const services = [
+  {
+    label: "Software Development", 
+    to: "/services/custom-software",
+  },
+  {
+    label: "Cloud & DevOps", 
+    to: "/services/cloud-devops",
+  },
+  {
+    label: "Data & BI", 
+    to: "/services/data-bi",
+  },
+  {
+    label: "System Modernization", 
+    to: "/services/modernization",
+  },
+  {
+    label: "API Integration", 
+    to: "/services/api-integration",
+  },
+  {
+    label: "QA Automation", 
+    to: "/services/qa-automation",
+  },
+];
 
 export default function Footer() {
   return (
@@ -94,38 +126,30 @@ export default function Footer() {
               <Link to="/" className="footer-logo-link" aria-label="Go to homepage">
                 <img src={logo} alt="Calvian Logo" className="footer-logo-image" />
               </Link>
-              <p>We provide innovative custom software solutions.</p>
+              <p>Your Vision, Developed. Your Future, Secured.</p>
             </div>
 
             <div className="footer-cols">
-              <div className="col">
+              <div className="col" style={{padding: "0 50px 0 0 "}}>
                 <h4>Services</h4>
-                <a href="/services/web">Web Dev</a>
-                <a href="/services/app">Mobile Apps</a>
-                <a href="/services/ux">UX/UI Design</a>
+                {services.map(({ label, to }) => (
+                  <Link key={to} to={to}>{label}</Link>
+                ))}
               </div>
               <div className="col">
                 <h4>Company</h4>
-                <a href="/about">About Us</a>
-                <a href="/careers">Careers</a>
-                <a href="/blog">Insights</a>
+                <Link to="/about">About Us</Link>
+                <Link to="/blog">Insights</Link>
               </div>
               <div className="col footer-contact">
                 <h4>Contact</h4>
-                <p>Email: <a href="mailto:contact@example.com" style={{ color: '#c2c7cc' }}>contact@example.com</a></p>
-                <p>Phone: +1 (800) 123-4567</p>
-                <div className="social">
-                  <a href="#"><FaLinkedin /></a>
-                  <a href="#"><FaTwitter /></a>
-                  <a href="#"><FaFacebook /></a>
-                  <a href="#"><FaYoutube /></a>
-                </div>
+                <MiniContactForm />
               </div>
             </div>
           </div>
 
           <div className="footer-bottom">
-            © {new Date().getFullYear()} Calvian Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} Calvian Inc. All rights reserved.
           </div>
         </div>
       </footer>

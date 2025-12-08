@@ -1,61 +1,69 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
-import { FaCloud, FaShieldAlt, FaRocket, FaExchangeAlt, FaCogs, FaCheckSquare } from "react-icons/fa";
+import { FaCloud, FaExchangeAlt, FaCogs, FaCheckSquare } from "react-icons/fa";
 import { AiOutlineApi } from "react-icons/ai";
-import { MdOutlineArchitecture, MdOutlineDataExploration, MdOutlineSecurity } from "react-icons/md";
+import { MdOutlineDataExploration } from "react-icons/md";
 
 import colors from "../../../config/colors";
 
 interface ServicesDropdownProps {
   isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const services = [
   {
-    label: "Custom Software Development",
+    label: "Software Development", // Shortened from "Custom Software Development"
     to: "/services/custom-software",
     icon: <FaCogs size={24} color={colors.primary} />,
     description: "Tailored solutions from concept to deployment for your unique business needs.",
   },
   {
-    label: "Cloud Engineering & DevOps",
+    label: "Cloud & DevOps", // Shortened from "Cloud Engineering & DevOps"
     to: "/services/cloud-devops",
     icon: <FaCloud size={24} color={colors.primary} />,
     description: "Migration, architecture, and automation for scalable, cost-efficient cloud infrastructure.",
   },
   {
-    label: "Data & Business Intelligence",
+    label: "Data & BI", // Shortened from "Data & Business Intelligence"
     to: "/services/data-bi",
     icon: <MdOutlineDataExploration size={24} color={colors.primary} />,
     description: "Transform raw data into actionable insights and strategic reporting dashboards.",
   },
   {
-    label: "Legacy System Modernization",
+    label: "System Modernization", // Shortened from "Legacy System Modernization"
     to: "/services/modernization",
     icon: <FaExchangeAlt size={24} color={colors.primary} />,
     description: "Update and refactor outdated systems to improve performance, security, and maintainability.",
   },
   {
-    label: "API Development & Integration",
+    label: "API Integration", // Shortened from "API Development & Integration"
     to: "/services/api-integration",
     icon: <AiOutlineApi size={24} color={colors.primary} />,
     description: "Build robust APIs and seamlessly connect disparate systems and third-party services.",
   },
   {
-    label: "QA & Automation Engineering",
+    label: "QA Automation", // Shortened from "QA & Automation Engineering"
     to: "/services/qa-automation",
     icon: <FaCheckSquare size={24} color={colors.primary} />,
-    description: "Implement automated testing frameworks, performance tests, and continuous quality pipelines."
+    description: "Implement automated testing frameworks, performance tests, and continuous quality pipelines.",
   },
 ];
 
-export default function ServicesDropdown({ isOpen, setIsOpen }: ServicesDropdownProps) {
+export default function ServicesDropdown({
+  isOpen,
+  setIsOpen,
+}: ServicesDropdownProps) {
   return (
     <div className={`dropdown-drawer ${isOpen ? "open" : ""}`}>
       <div className="drawer-content">
         {services.map(({ label, to, icon, description }) => (
-          <Link key={to} to={to} className="drawer-item" onClick={() => setIsOpen(false)}>
+          <Link
+            key={to}
+            to={to}
+            className="drawer-item"
+            onClick={() => setIsOpen(false)}
+          >
             <div className="icon">{icon}</div>
             <div className="text">
               <div className="title">{label}</div>
@@ -104,7 +112,7 @@ export default function ServicesDropdown({ isOpen, setIsOpen }: ServicesDropdown
         .drawer-item {
           display: flex;
           align-items: flex-start;
-          height: 170px;
+          height: 130px;
           gap: 1rem;
           background-color: #333;
           padding: 1rem 1.5rem;
@@ -151,9 +159,9 @@ export default function ServicesDropdown({ isOpen, setIsOpen }: ServicesDropdown
         }
 
         @media (max-width: 1000px) {
-            .drawer-content {
-                grid-template-columns: repeat(2, 300px); /* 2 columns for smaller screens */
-            }
+          .drawer-content {
+            grid-template-columns: repeat(2, 300px); /* 2 columns for smaller screens */
+          }
         }
 
         /* Scrollbar styling for overflow */
