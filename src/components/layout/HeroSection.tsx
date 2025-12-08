@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const HeroSection: React.FC = () => (
-  <section className="text-center max-w-3xl mx-auto">
+  <section className="text-center max-w-2xl mx-auto">
     <h1 className="text-5xl pt-10 font-extrabold text-primary mb-6">
       Efficient Software Solutions
     </h1>
