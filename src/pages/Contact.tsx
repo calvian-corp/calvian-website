@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+  const location = useLocation();
+  const contactContextMsg = location.state?.contextMsg;
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: contactContextMsg ? `I would like to learn more about ${contactContextMsg} ` : '',
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 

@@ -6,5 +6,6 @@ export default {
 	'gray-base': '#6F787D', // Slate Gray
 	'hover-accent': '#9d0707ff', // Darker shade for consistency
 	'primary-hover': '#009f00ff',
+	'dark-grey': '#222',
 };
 

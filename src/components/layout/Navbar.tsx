@@ -142,7 +142,7 @@ const Navbar: React.FC<NavbarProps> = ({ id, className }) => {
 
         .contact-btn {
           background-color: ${colors.primary};
-          color: #222;
+          color: ${colors['dark-grey']};
           border: none;
           border-radius: 4px;
           padding: 0.5rem 1rem;
