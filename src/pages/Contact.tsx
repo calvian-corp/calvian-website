@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+  const location = useLocation();
+  const contactContextMsg = location.state?.contextMsg;
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: contactContextMsg ? `I would like to learn more about ${contactContextMsg} ` : '',
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -82,7 +93,7 @@ const Contact: React.FC = () => {
             type="submit"
             disabled={isSubmitting}
             className={`w-full py-3 rounded-lg text-white font-semibold ${
-              isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary hover:bg-blue-700'
+              isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary hover:bg-primary-hover'
             } transition-colors`}
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}

@@ -4,7 +4,7 @@ const About: React.FC = () => (
   <div className="pt-24 max-w-4xl mx-auto px-4 space-y-8">
     <h1 className="text-5xl font-extrabold text-primary mb-6 text-center">About Us</h1>
     <p className="text-gray-700 text-lg">
-      At MyCompany, we specialize in delivering professional software services tailored to help
+      At Calvian, we specialize in delivering professional software services tailored to help
       businesses thrive in the digital era. Our team comprises experienced developers, architects,
       and testers dedicated to excellence and innovation.
     </p>

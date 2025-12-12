@@ -3,23 +3,32 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ServicesDropdown from "./ServicesDropdown";
 import logo from "../../assets/images/logo_white.svg";
+import colors from "../../../config/colors";
+
+interface NavbarProps {
+    id: string;
+    className: string;
+}
 
 const navItems = [
   { label: "About", to: "/about" },
   { label: "Services", to: "/services", hasDropdown: true },
-  { label: "Contact", to: "/contact" },
 ];
 
-export default function Navbar() {
+const sideMargins = "120px";
+
+// Updated the function signature to use React.FC and accept props
+const Navbar: React.FC<NavbarProps> = ({ id, className }) => {
   const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
-    <nav className="navbar">
-      <Link to="/" className="logo-link" aria-label="Go to homepage">
-        <img src={logo} alt="MyCompany Logo" className="logo-image" />
+    // Apply the ID and class from App.tsx, and combine with the static base class
+    <nav id={id} className={`navbar navbar-base ${className}`}> 
+      <Link to="/" className="logo-link" aria-label="Go to homepage" style={{ paddingLeft: sideMargins }}>
+        <img src={logo} alt="Calvian Logo" className="logo-image" />
       </Link>
 
-      <ul className="nav-list">
+      <ul className="nav-list" style={{ marginRight: sideMargins }}>
         {navItems.map(({ label, to, hasDropdown }) => {
           if (hasDropdown) {
             return (
@@ -30,7 +39,7 @@ export default function Navbar() {
                 onMouseLeave={() => setServicesOpen(false)}
               >
                 <div
-                  className="nav-link"
+                  className="nav-link no-focus"
                   tabIndex={0}
                   onFocus={() => setServicesOpen(true)}
                   onBlur={() => setServicesOpen(false)}
@@ -39,7 +48,7 @@ export default function Navbar() {
                   <span className="underline" />
                 </div>
 
-                <ServicesDropdown isOpen={servicesOpen} />
+                <ServicesDropdown isOpen={servicesOpen} setIsOpen={setServicesOpen} />
               </li>
             );
           }
@@ -53,6 +62,16 @@ export default function Navbar() {
             </li>
           );
         })}
+
+        <li className="nav-item">
+          <Link to="/contact" style={{ textDecoration: 'none' }}>
+            <button
+              className="contact-btn"
+              type="button">
+              Contact
+            </button>
+          </Link>
+        </li>
       </ul>
 
       <style jsx>{`
@@ -60,13 +79,6 @@ export default function Navbar() {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 1rem 6%;
-          background-color: #222;
-          color: #fff;
-          position: sticky;
-          top: 0;
-          z-index: 1000;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .logo-link {
@@ -88,6 +100,7 @@ export default function Navbar() {
           list-style: none;
           margin: 0;
           padding: 0;
+          align-items: center;
         }
 
         .nav-item {
@@ -106,8 +119,8 @@ export default function Navbar() {
         }
 
         .nav-link:hover,
-        .nav-link:focus {
-          color: #ff4081;
+        .nav-link:not(.no-focus):focus {
+          color: ${colors["primary-hover"]};
           transform: scale(1.1);
         }
 
@@ -117,16 +130,33 @@ export default function Navbar() {
           bottom: 0;
           height: 2px;
           width: 0%;
-          background-color: #ff4081;
+          background-color: ${colors.primary};
           transition: width 0.3s ease;
           border-radius: 2px;
         }
 
         .nav-link:hover .underline,
-        .nav-link:focus .underline {
+        .nav-link:not(.no-focus):focus .underline {
           width: 100%;
+        }
+
+        .contact-btn {
+          background-color: ${colors.primary};
+          color: ${colors['dark-grey']};
+          border: none;
+          border-radius: 4px;
+          padding: 0.5rem 1rem;
+          cursor: pointer;
+          font-weight: bold;
+          transition: background-color 0.3s ease;
+        }
+
+        .contact-btn:hover {
+          background-color: ${colors["primary-hover"]};
         }
       `}</style>
     </nav>
   );
 }
+
+export default Navbar;
