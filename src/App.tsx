@@ -7,10 +7,16 @@ import LoadingSpinner from './components/common/LoadingSpinner';
 
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
-const Services = lazy(() => import('./pages/Services'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Blog = lazy(() => import('./pages/Blog'));
 const Post = lazy(() => import('./pages/Post'));
+
+const CustomSoftware = lazy(() => import('./pages/services/CustomSoftware'));
+const CloudDevOps = lazy(() => import('./pages/services/CloudDevOps'));
+const DataBI = lazy(() => import('./pages/services/DataBI'));
+const Modernization = lazy(() => import('./pages/services/Modernization'));
+const ApiIntegration = lazy(() => import('./pages/services/ApiIntegration'));
+const QAAutomation = lazy(() => import('./pages/services/QAAutomation'));
 
 const SCROLL_THRESHOLD = 200; // Distance in pixels to reach full transparency
 
@@ -73,7 +79,7 @@ function App() {
         <meta name="description" content="Professional software services for modern businesses." />
       </Helmet>
 
-      <div className="flex flex-col min-h-screen">
+      <div className={`${location.pathname === "/services/custom-software" ? "bg-black" : '' } flex flex-col min-h-screen`}>
         <Navbar
           id="main-navbar"
           className={`${isScrolled ? 'scrolled' : ''} ${isVisible ? 'visible' : 'hidden'}`}
@@ -92,10 +98,15 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<Post />} />
+              <Route path="/services/custom-software" element={<CustomSoftware />} />
+              <Route path="/services/cloud-devops" element={<CloudDevOps />} />
+              <Route path="/services/data-bi" element={<DataBI />} />
+              <Route path="/services/modernization" element={<Modernization />} />
+              <Route path="/services/api-integration" element={<ApiIntegration />} />
+              <Route path="/services/qa-automation" element={<QAAutomation />} />
             </Routes>
           </Suspense>
         </main>
