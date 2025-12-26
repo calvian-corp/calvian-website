@@ -8,8 +8,12 @@ import LoadingSpinner from './components/common/LoadingSpinner';
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
-const Blog = lazy(() => import('./pages/Blog'));
 const Post = lazy(() => import('./pages/Post'));
+const Blog = lazy(() => import('./pages/BlogHome'));
+
+const GoodArchitecture = lazy(() => import('./pages/blog/GoodArchitecture'));
+const CloudPractices = lazy(() => import('./pages/blog/CloudPractices'));
+const AutomatedTesting = lazy(() => import('./pages/blog/AutomatedTesting'));
 
 const CustomSoftware = lazy(() => import('./pages/services/CustomSoftware'));
 const CloudDevOps = lazy(() => import('./pages/services/CloudDevOps'));
@@ -101,6 +105,9 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<Post />} />
+              <Route path="/blog/good-architecture" element={<GoodArchitecture />} />
+              <Route path="/blog/cloud-practices" element={<CloudPractices />} />
+              <Route path="/blog/automated-testing" element={<AutomatedTesting />} />
               <Route path="/services/custom-software" element={<CustomSoftware />} />
               <Route path="/services/cloud-devops" element={<CloudDevOps />} />
               <Route path="/services/data-bi" element={<DataBI />} />
