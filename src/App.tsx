@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useState, useEffect, useRef } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import { Helmet } from 'react-helmet';
@@ -100,11 +100,11 @@ function App() {
         <main className="flex-grow pt-24 relative z-10 container mx-auto px-4 py-8">
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
+              <Route path="*" element={<Navigate to="/" replace />} />
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:id" element={<Post />} />
               <Route path="/blog/good-architecture" element={<GoodArchitecture />} />
               <Route path="/blog/cloud-practices" element={<CloudPractices />} />
               <Route path="/blog/automated-testing" element={<AutomatedTesting />} />
