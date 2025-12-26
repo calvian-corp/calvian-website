@@ -77,7 +77,7 @@ const CloudBlogPage = () => {
               component="h1" 
               sx={{ color: colors.secondary, fontWeight: 800, mb: 3, lineHeight: 1.2 }}
             >
-              Top 5 Cloud Deployment Best Practices for 2024
+              Top 5 Cloud Deployment Best Practices for 2025
             </Typography>
             
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mb: 4 }}>
